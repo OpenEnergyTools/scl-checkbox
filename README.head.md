@@ -1,4 +1,4 @@
-# \<scl-select>
+# \<scl-checkbox>
 
 This is a web component meant to be used for SCL type attributes restricted to xs:boolean. In addition to default input it allows to have a `value="null"` for XML type attributes.
 
