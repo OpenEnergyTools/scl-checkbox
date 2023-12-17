@@ -56,6 +56,12 @@ describe('Custom SCL related checkbox', () => {
 
         expect(sclCheckbox.value).to.equal('true');
       });
+
+      it('always return true on reportValidity', () =>
+        expect(sclCheckbox.reportValidity()).to.be.true);
+
+      it('always return true on checkValidity', () =>
+        expect(sclCheckbox.checkValidity()).to.be.true);
     });
 
     describe('and value set to null', () => {
@@ -90,6 +96,12 @@ describe('Custom SCL related checkbox', () => {
 
         expect(sclCheckbox.value).to.equal('false');
       });
+
+      it('always return true on reportValidity', () =>
+        expect(sclCheckbox.reportValidity()).to.be.true);
+
+      it('always return true on checkValidity', () =>
+        expect(sclCheckbox.checkValidity()).to.be.true);
     });
   });
 
@@ -131,6 +143,12 @@ describe('Custom SCL related checkbox', () => {
 
         expect(sclCheckbox.value).to.equal('false');
       });
+
+      it('always return true on reportValidity', () =>
+        expect(sclCheckbox.reportValidity()).to.be.true);
+
+      it('always return true on checkValidity', () =>
+        expect(sclCheckbox.checkValidity()).to.be.true);
     });
 
     describe('and value set to null', () => {
@@ -166,6 +184,12 @@ describe('Custom SCL related checkbox', () => {
 
         expect(sclCheckbox.value).to.equal('true');
       });
+
+      it('always return true on reportValidity', () =>
+        expect(sclCheckbox.reportValidity()).to.be.true);
+
+      it('always return true on checkValidity', () =>
+        expect(sclCheckbox.checkValidity()).to.be.true);
     });
   });
 });

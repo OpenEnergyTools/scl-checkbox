@@ -74,6 +74,18 @@ export class SclCheckbox extends LitElement {
 
   @query('.nullswitch.element') nullSwitch?: Switch;
 
+  // TODO (jakob-vogelsang): only make sense with the introduction of fixed value
+  // eslint-disable-next-line class-methods-use-this
+  reportValidity(): boolean {
+    return true;
+  }
+
+  // TODO (jakob-vogelsang): only make sense with the introduction of fixed value
+  // eslint-disable-next-line class-methods-use-this
+  checkValidity(): boolean {
+    return true;
+  }
+
   private renderNullSwitch(): TemplateResult {
     if (this.nullable) {
       return html`<md-switch
