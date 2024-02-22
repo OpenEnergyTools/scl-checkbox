@@ -6,6 +6,7 @@ This is a web component meant to be used for SCL type attributes restricted to x
 
 This element was meant to be used only for plugins in this organization. If it still fills you bill please use or re-use it. But be aware that we will not react on feature wishes that do not contribute to the needs of plugin in this organization.
 
+
 ## `scl-checkbox.ts`:
 
 ### class: `SclCheckbox`
@@ -27,6 +28,19 @@ This element was meant to be used only for plugins in this organization. If it s
 | `label`          |         | `string`                         | `''`    |                                                                       |                |
 | `supportingText` |         | `string`                         | `''`    |                                                                       |                |
 | `nullSwitch`     |         | `Switch \| undefined`            |         |                                                                       |                |
+
+#### Methods
+
+| Name             | Privacy | Description | Parameters | Return    | Inherited From |
+| ---------------- | ------- | ----------- | ---------- | --------- | -------------- |
+| `reportValidity` |         |             |            | `boolean` |                |
+| `checkValidity`  |         |             |            | `boolean` |                |
+
+#### Events
+
+| Name    | Type    | Description | Inherited From |
+| ------- | ------- | ----------- | -------------- |
+| `input` | `Event` |             |                |
 
 <details><summary>Private API</summary>
 
@@ -55,5 +69,6 @@ This element was meant to be used only for plugins in this organization. If it s
 | Kind | Name          | Declaration | Module          | Package |
 | ---- | ------------- | ----------- | --------------- | ------- |
 | `js` | `SclCheckbox` | SclCheckbox | scl-checkbox.ts |         |
+
 
 &copy; 2023 The Contributors

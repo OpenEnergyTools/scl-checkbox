@@ -92,9 +92,17 @@ export class SclCheckbox extends LitElement {
         class="nullswitch element"
         ?selected=${!this.null}
         ?disabled=${this.disabled}
-        @change=${() => {
-          this.null = !this.nullSwitch!.selected;
-        }}
+        @input="${async (evt: Event) => {
+          /** TODO(jakob-vogelsang): change when
+           * https://github.com/material-components/material-web/issues/5486
+           * is fixed */
+          evt.stopPropagation();
+        }}"
+        @change="${async (evt: Event) => {
+          this.null = !(evt.target as Switch).selected;
+          await this.updateComplete;
+          this.dispatchEvent(new Event('input'));
+        }}"
       ></md-switch>`;
     }
     return html``;
@@ -114,9 +122,10 @@ export class SclCheckbox extends LitElement {
               touch-target="wrapper"
               ?checked=${this.checkboxValue === 'true'}
               ?disabled=${this.disabled || this.isNull}
-              @change="${(evt: Event) => {
+              @input="${async (evt: Event) => {
                 this.checkboxValue =
                   (evt.target as Checkbox).checked === true ? 'true' : 'false';
+                await this.updateComplete; // we want the changes of the value to be certain
               }}"
             ></md-checkbox>
             ${this.userText}
@@ -145,6 +154,7 @@ export class SclCheckbox extends LitElement {
     .input.element {
       display: flex;
       align-items: center;
+      height: 100%;
     }
   `;
 }

@@ -9,12 +9,6 @@ import { SinonSpy, spy } from 'sinon';
 import './scl-checkbox.js';
 import type { SclCheckbox } from './scl-checkbox.js';
 
-function timeout(ms: number) {
-  return new Promise(res => {
-    setTimeout(res, ms);
-  });
-}
-
 describe('Custom SCL related checkbox', () => {
   describe('with nullable option being activated', () => {
     describe('and value set not to null', () => {
@@ -22,25 +16,45 @@ describe('Custom SCL related checkbox', () => {
       let event: SinonSpy;
 
       beforeEach(async () => {
-        sclCheckbox = await fixture(
-          html`<scl-checkbox nullable .value=${'true'}></scl-checkbox>`
-        );
-
         event = spy();
-        window.addEventListener('input', event);
+
+        sclCheckbox = await fixture(
+          html`<scl-checkbox
+            nullable
+            .value=${'true'}
+            @input="${(evt: Event) => event(evt)}"
+          ></scl-checkbox>`
+        );
       });
 
-      it('triggers input event with clicked nullSwitch', async () => {
+      it('triggers input event with clicked checkbox', async () => {
         await sendMouse({ type: 'click', position: [30, 20] });
 
         expect(event).to.have.been.calledOnce;
+        expect(event.args[0][0].target).to.equal(sclCheckbox);
+        expect(event.args[0][0].target.value).to.equal('false');
+      });
+
+      it('triggers input event with clicked nullSwitch', async () => {
+        await sendMouse({ type: 'click', position: [770, 20] });
+
+        expect(event).to.have.been.calledOnce;
+        expect(event.args[0][0].target).to.equal(sclCheckbox);
+        expect(event.args[0][0].target.value).to.equal(null);
+      });
+
+      it('return "false" with clicked checkbox', async () => {
+        expect(sclCheckbox.value).to.equal('true');
+
+        await sendMouse({ type: 'click', position: [30, 20] });
+
+        expect(sclCheckbox.value).to.equal('false');
       });
 
       it('return null with clicked nullSwitch', async () => {
         expect(sclCheckbox.value).to.equal('true');
 
         await sendMouse({ type: 'click', position: [770, 20] });
-        await sclCheckbox.updateComplete;
 
         expect(sclCheckbox.value).to.be.null;
       });
@@ -69,23 +83,23 @@ describe('Custom SCL related checkbox', () => {
       let event: SinonSpy;
 
       beforeEach(async () => {
+        event = spy();
+
         sclCheckbox = await fixture(
           html`<scl-checkbox
             nullable
             .value=${null}
             defaultValue="true"
+            @input="${(evt: Event) => event(evt)}"
           ></scl-checkbox>`
         );
-
-        event = spy();
-        window.addEventListener('input', event);
       });
 
       it('triggers input event with clicked nullSwitch', async () => {
         await sendMouse({ type: 'click', position: [770, 20] });
-        await sclCheckbox.updateComplete;
 
         expect(event).to.have.been.calledOnce;
+        expect(event.args[0][0].target.value).to.equal('false');
       });
 
       it('return non null value with clicked nullSwitch', async () => {
@@ -111,13 +125,14 @@ describe('Custom SCL related checkbox', () => {
       let event: SinonSpy;
 
       beforeEach(async () => {
-        sclCheckbox = await fixture(
-          html`<scl-checkbox .value=${'true'}></scl-checkbox>`
-        );
-
         event = spy();
-        window.addEventListener('input', event);
-        // window.addEventListener('change', event);
+
+        sclCheckbox = await fixture(
+          html`<scl-checkbox
+            .value=${'true'}
+            @input="${(evt: Event) => event(evt)}"
+          ></scl-checkbox>`
+        );
       });
 
       it('triggers input event with clicked nullSwitch', async () => {
@@ -130,7 +145,6 @@ describe('Custom SCL related checkbox', () => {
         expect(sclCheckbox.value).to.equal('true');
 
         await sendMouse({ type: 'click', position: [30, 20] });
-        await timeout(200);
 
         expect(sclCheckbox.value).to.equal('false');
       });
@@ -156,17 +170,19 @@ describe('Custom SCL related checkbox', () => {
       let event: SinonSpy;
 
       beforeEach(async () => {
+        event = spy();
+
         sclCheckbox = await fixture(
           html`<scl-checkbox
             .value=${null}
             defaultValue="true"
             label="label"
             supportingText="text"
+            @input="${(evt: Event) => {
+              event(evt);
+            }}"
           ></scl-checkbox>`
         );
-
-        event = spy();
-        window.addEventListener('input', event);
       });
 
       it('triggers input event with clicked checkbox', async () => {
