@@ -17,20 +17,21 @@ export class SclCheckbox extends LitElement {
   @property({ type: String })
   defaultValue?: 'true' | 'false';
 
+  @state()
   private checkboxValue: 'true' | 'false' = 'false';
 
   /** SCL attributes `value`, can only be `null` if [[`nullable`]]. */
-  @property({ type: String })
-  get value(): 'true' | 'false' | null {
-    return this.null ? null : this.checkboxValue;
-  }
-
+  @property({ attribute: false })
   set value(value: 'true' | 'false' | null) {
     if (value === null) this.null = true;
     else {
       this.null = false;
       this.checkboxValue = value;
     }
+  }
+
+  get value(): 'true' | 'false' | null {
+    return this.null ? null : this.checkboxValue;
   }
 
   @property({ type: Boolean })
