@@ -49,6 +49,15 @@ describe('Custom SCL related TextField', () => {
       await timeout(200);
       await visualDiff(sclSelect, `non-nullable/disabled`);
     });
+
+    it('updates value', async () => {
+      await timeout(200);
+
+      sclSelect.value = 'false';
+      await timeout(200);
+
+      await visualDiff(sclSelect, `non-nullable/update value`);
+    });
   });
 
   describe('that is nullable', () => {
@@ -92,7 +101,7 @@ describe('Custom SCL related TextField', () => {
       });
     });
 
-    describe('with defaultValue set', () => {
+    describe('with defaultValue not set', () => {
       let sclCheckbox: SclCheckbox;
 
       beforeEach(async () => {
