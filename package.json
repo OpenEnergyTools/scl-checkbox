@@ -2,7 +2,7 @@
   "name": "@openenergytools/scl-checkbox",
   "description": "component for SCL related xs:boolean attribute",
   "license": "Apache-2.0",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "main": "dist/scl-checkbox.js",
   "module": "dist/scl-checkbox.js",
