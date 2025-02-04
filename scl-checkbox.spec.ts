@@ -7,7 +7,7 @@ import { sendKeys, sendMouse } from '@web/test-runner-commands';
 import { SinonSpy, spy } from 'sinon';
 
 import './scl-checkbox.js';
-import type { SclCheckbox } from './scl-checkbox.js';
+import type { SclCheckbox } from './SclCheckbox.js';
 
 describe('Custom SCL related checkbox', () => {
   describe('with nullable option being activated', () => {
