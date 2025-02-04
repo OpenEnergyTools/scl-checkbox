@@ -6,7 +6,7 @@ import { sendKeys, sendMouse } from '@web/test-runner-commands';
 import { visualDiff } from '@web/test-runner-visual-regression';
 
 import './scl-checkbox.js';
-import type { SclCheckbox } from './scl-checkbox.js';
+import type { SclCheckbox } from './SclCheckbox.js';
 
 const factor = window.process && process.env.CI ? 5 : 3;
 function timeout(ms: number) {
